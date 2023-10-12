@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->text('name');
-            $table->boolean('completion_status');
+            $table->boolean('completion_status')->default('0');
             $table->timestamps();
         });
     }

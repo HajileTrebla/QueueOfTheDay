@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TasksController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,8 +34,10 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function (){
     Route::get('/dashboard', [TasksController::class, 'index'])->name('dashboard');
     Route::post('/dashboard', [TasksController::class, 'store'])->name('tasks.store');
-    Route::patch('/dashboard', [TasksController::class, 'update'])->name('tasks.update');
     Route::delete('/dashboard', [TasksController::class, 'delete'])->name('tasks.delete');
+    Route::patch('/dashboard', [TasksController::class, 'update'])->name('tasks.update');
+    Route::get('/dashboard/edit', [TasksController::class,'edit'])->name('tasks.edit');
 });
+
 
 require __DIR__.'/auth.php';

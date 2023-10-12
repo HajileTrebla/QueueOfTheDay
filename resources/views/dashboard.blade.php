@@ -8,8 +8,14 @@
         <div class='md:min-w-[50%] flex pt-24 pl-16 pr-12 md:pl-40 md:pr-0'>
             @include('tasks-partials.task-input-form')
         </div>
-        <div class='md:min-w-[50%] flex pt-8 pl-16 md:pt-24 md:pl-40'>
-            @include('tasks-partials.task-list', ['tasks'=>$tasks])
-        </div>
+        @if (1 === 1)
+            <div class='md:min-w-[50%] flex pt-8 pl-16 md:pt-24 md:pl-40'>
+                @include('tasks-partials.task-list', ['tasks'=>$tasks])
+            </div>
+        @else
+            <div class='md:min-w-[50%] flex pt-8 pl-16 md:pt-24 md:pl-40'>
+                @include('tasks-partials.task-list', ['tasks'=>$tasks])
+            </div>
+        @endif
     </div>
 </x-app-layout>

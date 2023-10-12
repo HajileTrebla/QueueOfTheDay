@@ -15,7 +15,7 @@ class TasksController extends Controller
      */
     public function index()
     {
-        $tasks = Tasks::paginate(10);
+        $tasks = Tasks::orderby('id', 'desc')->paginate(10);
         return view('dashboard', ['tasks'=>$tasks]);
     }
 
@@ -39,7 +39,13 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        $data = $request->validate([
+            'user_id' => 'required:numeric',
+            'name' => 'required',
+        ]);
+
+        $newTask = Tasks::create($data);
+        return redirect(route('dashboard'));
     }
 
     /**
@@ -53,17 +59,29 @@ class TasksController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Tasks $tasks)
+    public function edit(Request $request, Tasks $tasks)
     {
-        //
+        dd($request);
+
+//        return view('dashboard', [
+//            'task' => $request,
+//        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTasksRequest $request, Tasks $tasks)
+    public function update(Request $request, Tasks $tasks)
     {
-        //
+        $task = Tasks::where('id', '=', $request->id);
+
+        $data = $request->validate([
+            'completion_status' => 'required'
+        ]);
+
+        $task->update($data);
+
+        return redirect(view('dashboard'));
     }
 
     /**

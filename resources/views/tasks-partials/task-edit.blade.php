@@ -9,18 +9,19 @@
         </p>
     </header>
     <div>
-        <form method="post" action="{{route('tasks.store')}}" class="w-full max-w-sm">
+        <form method="patch" action="{{route('tasks.update')}}" class="w-full max-w-sm">
             @csrf
-            @method('post')
+            @method('patch')
             <div class="flex border-b border-tea-500 py-2">
-                <input type="hidden" name="user_id" value="{{auth()->id()}}">
+                <input type="hidden" name="id" value="{{ $task->id }}">
                 <input class="appearance-none bg-transparent border-none w-full text-gray-700 dark:text-gray-100 mr-3 py-1 px-2 leading-tight focus:outline-none"
                       type="text"
-                      placeholder="Add Task Here"
+                      placeholder="{{ $task->name }}"
+                      value="{{ $task->name }}"
                       name='name'>
                 <button class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
                     type="submit">
-                    {{ __('Add Task') }}
+                    {{ __('Submit') }}
                 </button>
                 <button class="flex-shrink-0 border-transparent border-4 text-teal-500 hover:text-teal-800 text-sm py-1 px-2 rounded"
                     type="reset">
@@ -30,3 +31,4 @@
         </form>
     </div>
 </section>
+
