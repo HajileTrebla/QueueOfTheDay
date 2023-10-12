@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTasksRequest;
 use App\Http\Requests\UpdateTasksRequest;
+use App\Http\Resources\TaskResource;
 use App\Models\Tasks;
+use Illuminate\Http\Request;
 
 class TasksController extends Controller
 {
@@ -13,7 +15,14 @@ class TasksController extends Controller
      */
     public function index()
     {
-        return Tasks::all();
+        $tasks = Tasks::paginate(10);
+        return view('dashboard', ['tasks'=>$tasks]);
+    }
+
+    public function home()
+    {
+        $tasks = Tasks::paginate(10);
+        return view('home', ['tasks'=>$tasks]);
     }
 
     /**
@@ -21,15 +30,16 @@ class TasksController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard');
     }
 
     /**
      * Store a newly created resource in storage.
+     *
      */
-    public function store(StoreTasksRequest $request)
+    public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**

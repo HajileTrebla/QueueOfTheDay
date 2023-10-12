@@ -5,6 +5,16 @@
         </h1>
     </header>
     <div>
-
+        <table class="table-auto">
+            <tbody>
+                @foreach($tasks as $task)
+                <tr>
+                    <td class="border-b-2 px-4 py-2 rounded-3x1 text-gray-900 dark:text-gray-100">
+                        {{$task->name}}
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 </section>

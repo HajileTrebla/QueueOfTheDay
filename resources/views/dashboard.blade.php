@@ -4,14 +4,12 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
+    <div class="flex flex-col md:flex-row lg:flex-row justify-center">
+        <div class='md:min-w-[50%] flex pt-24 pl-16 pr-12 md:pl-40 md:pr-0'>
+            @include('tasks-partials.task-input-form')
+        </div>
+        <div class='md:min-w-[50%] flex pt-8 pl-16 md:pt-24 md:pl-40'>
+            @include('tasks-partials.task-list', ['tasks'=>$tasks])
         </div>
     </div>
 </x-app-layout>

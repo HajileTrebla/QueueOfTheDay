@@ -18,15 +18,14 @@
             */
         </style>
     </head>
-    <body class="antialiased">
-        <div class="relative sm:flex sm:justify-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
+    <body class="antialiased bg-gray-100 dark:bg-gray-900">
+        <div class="relative sm:flex sm:justify-center bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
             @if (Route::has('login'))
                 <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
                     @auth
                         <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
                     @else
                         <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
-
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
                         @endif
@@ -35,16 +34,14 @@
             @endif
             @if (Route::has('login'))
                     @auth
-                    <div class='min-h-screen md:min-w-[50%] sm:flex pt-24 pl-24'>
-                        @include('tasks-partials.task-input-form')
-                    </div>
-                    <div class='min-h-screen md:min-w-[50%] sm:flex pt-24'>
-                        @include('tasks-partials.task-list')
+                    {{ isset($tasks) ? $tasks : '' }}
+                    <div class='min-h-[90%] md:min-w-[50%] sm:flex pt-24'>
+                        @include('tasks-partials.task-list', ['tasks' => '$tasks'])
                     </div>
                     @else
                     <div class='min-h-screen sm:top-60 sm:flex'>
                         <h1 class="font-semibold text-gray-900 dark:text-white">
-                            __('LOG IN TO SEE YOUR QUEUE OF THE DAY')
+                           {{ __('LOG IN TO SEE YOUR QUEUE OF THE DAY') }}
                         </h1>
                     </div>
                     @endauth
